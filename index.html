@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#161616">
+  <meta name="description" content="BurgerTop. Sabor, qualidade e praticidade em um só lugar.">
+  <title>BurgerTop — Seu hambúrguer favorito está aqui.</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/conta.css">
+  <script src="js/config.js" defer></script>
+  <script src="js/auth.js" defer></script>
+  <script src="js/produtos.js" defer></script>
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a class="brand" href="#inicio" aria-label="BurgerTop — início">Burger<span>Top</span></a>
+      <nav aria-label="Navegação principal">
+        <a href="login.html" data-account-link>Entrar</a>
+        <a href="#inicio">Início</a>
+        <a class="cart-link" href="#carrinho"><svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h3l3 13h11l3-9H6"/><circle cx="9" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg>Carrinho <span id="cart-count" class="cart-count">0</span></a>
+      </nav>
+    </div>
+  </header>
+  <main id="inicio" tabindex="-1">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-media" aria-hidden="true">
+        <img src="Assets/images/banner-final.webp" alt="" class="hero-fallback" fetchpriority="high">
+        <video class="hero-video" muted playsinline preload="none" disablepictureinpicture tabindex="-1">
+          <source data-src="Assets/videos/burger-intro.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <h1 id="hero-title">Seu hambúrguer favorito <span>está aqui.</span></h1>
+          <p>Sabor, qualidade e praticidade em um só lugar.</p>
+        </div>
+      </div>
+    </section>
+    <div class="shop-layout">
+      <section id="cardapio" class="catalog" tabindex="-1" aria-label="Produtos">
+        <div class="catalog-heading"><label class="search"><span class="sr-only">Buscar produto</span><input id="search" type="search" placeholder="Buscar produto…"></label></div>
+        <div class="filters" role="group" aria-label="Filtrar produtos">
+          <button type="button" data-category="all" aria-pressed="true">Todos</button>
+          <button type="button" data-category="burger" aria-pressed="false">Hambúrgueres</button>
+          <button type="button" data-category="drink" aria-pressed="false">Bebidas</button>
+        </div>
+        <p class="demo-note">Preços de referência · não oficiais da BurgerTop.</p>
+        <div class="product-grid" id="products"></div>
+        <p id="no-results" hidden>Nenhum produto encontrado.</p>
+      </section>
+      <div id="cart-dock"><aside id="carrinho" class="cart-panel" tabindex="-1" aria-labelledby="cart-title">
+        <h2 id="cart-title"><span aria-hidden="true">🛒</span> Seu pedido</h2>
+        <button class="text-button expand-cart" id="expand-cart" type="button">Ver pedido completo ↗</button>
+        <p id="empty-cart">Nenhum item adicionado ainda.</p>
+        <ul id="cart-items"></ul>
+        <div class="cart-subtotal"><span>Subtotal</span><span id="cart-subtotal">R$ 0,00</span></div>
+        <div class="cart-total"><span>Total:</span><strong id="cart-total">R$ 0,00</strong></div>
+        <button class="primary-button checkout-button" id="checkout" type="button" disabled>Finalizar pedido</button>
+        <p class="cart-note">Demonstração · sem pagamento ou envio de pedido.</p>
+        <p id="storage-warning" class="cart-note" role="status" hidden></p>
+      </aside></div>
+    </div>
+    <p id="cart-status" class="toast" role="status"></p>
+  </main>
+  <button class="mobile-cart-bar" id="mobile-cart" type="button" aria-haspopup="dialog" aria-controls="cart-dialog">
+    <span><strong id="mobile-count">0 itens</strong><span>Ver meu pedido →</span></span><strong id="mobile-total">R$ 0,00</strong>
+  </button>
+  <dialog class="modal product-modal" id="product-dialog" aria-labelledby="detail-name">
+    <div class="modal-content product-detail">
+      <div class="modal-closebar"><button class="close-modal" type="button" data-close aria-label="Fechar detalhes" autofocus>×</button></div>
+      <div class="detail-image"><img id="detail-image" alt=""></div>
+      <div class="detail-copy"><p class="eyebrow" id="detail-eyebrow"></p><h2 id="detail-name"></h2><p id="detail-description"></p>
+        <div class="ingredients"><h3 id="detail-composition-title">Ingredientes ilustrativos</h3><p id="detail-ingredients"></p><small id="detail-composition-note">Composição de demonstração, a confirmar pela loja.</small></div>
+        <strong class="detail-price" id="detail-price"></strong>
+        <div class="detail-actions"><div class="quantity"><button type="button" id="detail-minus" aria-label="Diminuir quantidade">−</button><output id="detail-quantity" aria-live="polite">1</output><button type="button" id="detail-plus" aria-label="Aumentar quantidade">+</button></div><button type="button" class="primary-button add-to-cart" id="detail-add">Adicionar ao carrinho</button></div>
+        <p class="detail-feedback" id="detail-feedback" role="status"></p>
+      </div>
+    </div>
+  </dialog>
+  <dialog class="modal cart-dialog" id="cart-dialog" aria-labelledby="cart-title"><div class="modal-content"><div class="modal-closebar"><button type="button" class="close-modal" data-close aria-label="Fechar pedido" autofocus>×</button></div><div id="cart-modal-slot"></div></div></dialog>
+  <dialog class="modal checkout-dialog" id="checkout-dialog" aria-labelledby="checkout-title" aria-describedby="checkout-description">
+    <div class="modal-content">
+      <div class="modal-closebar"><button type="button" class="close-modal" data-close aria-label="Fechar resumo" autofocus>×</button></div>
+      <div class="checkout-content">
+      <p class="eyebrow">Resumo do pedido</p>
+      <h2 id="checkout-title">Tudo certo por aqui?</h2>
+      <p id="checkout-description">Confira os itens antes de concluir a demonstração.</p>
+      <p class="checkout-count" id="checkout-count"></p>
+      <ul id="checkout-items"></ul>
+      <div class="cart-total"><span>Total do pedido</span><strong id="checkout-total"></strong></div>
+      <div class="checkout-footer">
+        <p class="checkout-disclaimer">Esta é uma simulação. Nenhum pedido será enviado e nenhum valor será cobrado.</p>
+        <button type="button" class="primary-button" id="complete-demo">Concluir demonstração</button>
+        <p id="checkout-feedback" class="auth-message" role="alert" hidden></p>
+      </div>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>

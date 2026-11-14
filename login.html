@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111110">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Entrar — BurgerTop</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/conta.css">
+  <script src="js/config.js" defer></script>
+  <script src="js/auth.js" defer></script>
+  <script src="js/login.js" defer></script>
+</head>
+<body class="auth-body">
+  <a class="auth-back" href="index.html">← Voltar aos produtos</a>
+  <main class="auth-shell">
+    <section class="auth-visual" aria-label="Hambúrgueres BurgerTop">
+      <!-- Fotografia original. A referência de composição não é exibida como painel. -->
+      <div class="auth-media"><img src="Assets/images/login-burger.jpeg" alt="Hambúrgueres com carne, queijo e salada sobre uma bancada de madeira" width="1600" height="900" fetchpriority="high"></div>
+    </section>
+    <section class="auth-form-panel" aria-labelledby="auth-title">
+      <a class="brand auth-brand" href="index.html" aria-label="BurgerTop — início">Burger<span>Top</span></a>
+      <p class="auth-intro" id="auth-intro">Acompanhe seus pedidos.</p>
+      <div id="auth-stage" class="auth-stage">
+      <h1 id="auth-title" tabindex="-1">Bem-vindo de volta.</h1>
+      <p class="auth-message" id="auth-message" role="status" aria-live="polite" hidden></p>
+      <a class="primary-button local-access-link" id="open-local-login" href="http://127.0.0.1:4173/login.html" hidden>Abrir login local</a>
+      <form id="auth-form" novalidate>
+        <div class="field" id="name-field" hidden><label for="full-name">Nome</label><input id="full-name" name="name" autocomplete="name" minlength="2" maxlength="80" placeholder="Como podemos chamar você?"></div>
+        <div class="field" id="email-field"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required placeholder="voce@gmail.com"></div>
+        <div class="field" id="password-field"><label for="password">Senha</label><div class="password-control"><input id="password" name="password" type="password" autocomplete="current-password" inputmode="numeric" minlength="6" maxlength="128" pattern="[0-9]{6,128}" required placeholder="Sua senha" aria-describedby="password-hint"><button class="password-toggle" id="toggle-password" type="button" aria-label="Mostrar senha" aria-pressed="false" aria-controls="password"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/><path class="eye-slash" d="m3 3 18 18"/></svg></button></div><small id="password-hint">Somente números, com pelo menos 6 dígitos.</small></div>
+        <div class="auth-options"><a id="recover-link" href="login.html?mode=recover">Esqueci minha senha</a></div>
+        <button id="auth-submit" class="primary-button auth-submit" type="submit">Entrar</button>
+      </form>
+      <p class="auth-switch" id="auth-switch">Ainda não tem conta? <a href="login.html?mode=signup">Criar conta</a></p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

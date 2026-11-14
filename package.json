@@ -1,0 +1,24 @@
+{
+  "name": "burgertop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hamburgueria em HTML, CSS e JavaScript com Supabase Auth e pedidos por conta.",
+  "scripts": {
+    "dev": "node scripts/serve.cjs",
+    "check": "node scripts/check-project.cjs",
+    "build": "node scripts/build.cjs",
+    "preview": "node scripts/serve.cjs --dist",
+    "test:production": "node tests/production.test.cjs",
+    "test": "node --test tests/cart.test.cjs tests/database.test.cjs tests/auth-utils.test.cjs",
+    "test:browser": "node tests/browser-check.cjs",
+    "test:auth": "node tests/auth-browser.cjs",
+    "test:auth:live": "node tests/auth-live.cjs",
+    "supabase": "supabase"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.16",
+    "playwright": "1.62.1",
+    "supabase": "3.1.0"
+  },
+  "engines": { "node": ">=22" }
+}
