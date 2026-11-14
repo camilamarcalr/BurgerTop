@@ -142,7 +142,7 @@ async function signIn(page, next = 'conta.html') {
     }
   });
   await check('Falha no pedido conserva carrinho; repetição usa a mesma chave e limpa só após sucesso', async () => {
-    await page.goto(base); await page.locator('[data-add="x-burger"]').click(); await page.locator('#checkout').click(); await page.locator('#checkout-dialog').waitFor({ state: 'visible' });
+    await page.goto(base); await page.locator('[data-add="x-burger"]').click(); await page.locator('.cart-link').click(); await page.locator('#checkout').click(); await page.locator('#checkout-dialog').waitFor({ state: 'visible' });
     state.failOrder = true; await page.locator('#complete-demo').click(); await page.locator('#checkout-feedback').waitFor({ state: 'visible' });
     assert.equal(await page.locator('#cart-count').textContent(), '1');
     state.failOrder = false; await page.locator('#complete-demo').click(); await page.locator('#checkout-dialog').waitFor({ state: 'hidden' });
@@ -156,9 +156,11 @@ async function signIn(page, next = 'conta.html') {
     await page.locator('.account-menu summary').click(); await page.locator('.header-signout').click(); await page.waitForURL('**/index.html'); await page.goto(base + 'conta.html'); await page.waitForURL('**/login.html?next=conta.html');
   });
   await check('Visitante vai do carrinho ao login sem perder os produtos', async () => {
-    await page.goto(base); await page.locator('[data-add="coca"]').click(); await page.locator('#checkout').click(); await page.waitForURL('**/login.html?next=index.html%23carrinho');
+    await page.goto(base); await page.locator('[data-add="coca"]').click(); await page.locator('.cart-link').click(); await page.locator('#checkout').click(); await page.waitForURL('**/login.html?next=index.html%23carrinho');
     await page.locator('#email').fill(user.email); await page.locator('#password').fill('638259'); await page.locator('#auth-submit').click(); await page.waitForURL('**/index.html#carrinho');
     assert.equal(await page.locator('#cart-count').textContent(), '1');
+    await page.locator('#cart-dialog').waitFor({ state: 'visible' });
+    await page.keyboard.press('Escape');
   });
   await check('Menu da conta exibe nome, fecha por ESC e encerra a sessão pelo cabeçalho', async () => {
     await page.locator('.account-menu .account-name').getByText('Alice', { exact: true }).waitFor();

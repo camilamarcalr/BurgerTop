@@ -12,7 +12,7 @@ O mesmo arquivo estiliza o menu do cabeçalho com nome, ícone de hambúrguer e 
 
 A base visual usa fundo escuro, texto claro e laranja para destacar preços e ações. A grade de produtos usa CSS Grid; os alinhamentos dos controles e de outros elementos usam Flexbox.
 
-As regras de responsividade mudam o número de colunas conforme a largura da tela. Em telas menores, o painel lateral dá lugar à barra inferior do pedido, e os detalhes se organizam em uma coluna. Também há ajustes para usar o celular deitado.
+As regras de responsividade mudam o número de colunas conforme a largura da tela. O carrinho abre centralizado em todas as larguras, sem painel lateral fixo. No celular há também uma barra inferior de acesso ao pedido. Os detalhes se organizam em uma coluna nas telas menores, com ajustes para o celular deitado.
 
 As fotos preenchem a área dos cards sem serem esticadas. O vídeo fica alinhado ao fundo do banner. Os modais têm rolagem interna e um botão de fechar que continua acessível durante a rolagem.
 

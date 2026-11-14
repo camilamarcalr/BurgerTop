@@ -9,7 +9,7 @@ Esta pasta guarda resumos, dados e capturas das verificações. Os arquivos são
 
 Cada suíte também pode gerar JSON. As imagens `login-*.png`, `signup-*.png` e as capturas do catálogo ajudam a conferir proporções. Esses JSONs e PNGs ficam no computador e são ignorados pelo Git; incluem detalhes de execução ou identificadores de contas fictícias que não precisam fazer parte da entrega.
 
-`remote-report.json` é uma consulta pública do projeto: indica confirmação automática e resposta da tabela de perfis, sem recolher linhas de usuários. O resumo da preparação está em [VERIFICACAO.md](../../docs/VERIFICACAO.md).
+`remote-report.json` é uma consulta pública do projeto: indica confirmação automática e resposta da tabela de perfis, sem recolher linhas de usuários.
 
 Os resultados de navegador são do Edge e de larguras emuladas. Não representam Safari, aparelho físico ou uma publicação na Vercel. Recuperação por e-mail e domínio de produção precisam de teste próprio.
 

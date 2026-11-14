@@ -9,7 +9,7 @@ function walk(directory) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
     if (entry.isDirectory() && skip.has(entry.name)) continue;
     const file = path.join(directory, entry.name);
-    if (entry.isSymbolicLink()) { failures.push('Link simbólico não revisado: ' + path.relative(root, file)); continue; }
+    if (entry.isSymbolicLink()) { failures.push('Link simbólico não permitido: ' + path.relative(root, file)); continue; }
     if (entry.isDirectory()) { directories.push(file); walk(file); } else files.push(file);
   }
 }

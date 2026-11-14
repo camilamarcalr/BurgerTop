@@ -4,6 +4,8 @@ O BurgerTop é um projeto de hamburgueria feito com HTML, CSS e JavaScript. Dá 
 
 Os pedidos fazem parte de um projeto acadêmico: não há pagamento ou envio para uma loja física.
 
+[Site publicado](https://burgertop.vercel.app) · [Repositório](https://github.com/camilamarcalr/BurgerTop)
+
 ## Executar no computador
 
 Instale Node.js 22 ou superior. Na pasta do projeto, execute:
@@ -15,7 +17,7 @@ npm run dev
 
 Abra `http://127.0.0.1:4173`. Mantenha o terminal aberto enquanto estiver usando o servidor. Para encerrar, pressione Ctrl+C.
 
-O catálogo também abre pelo arquivo HTML, mas o acesso à conta precisa de HTTP ou HTTPS. Quando uma página de acesso é aberta como arquivo, ela oferece um link para o endereço local. Esse servidor é só de desenvolvimento: depois de publicado, o site não depende do computador de quem o criou.
+O acesso à conta precisa de HTTP ou HTTPS. O servidor local é só de desenvolvimento; a versão publicada funciona sem o computador de quem a criou.
 
 ## Organização
 
@@ -47,7 +49,7 @@ Cada pasta mantida tem um README sobre seu conteúdo. `node_modules` e `dist` s�
 ## O que funciona
 
 - Busca e filtros por hambúrgueres ou bebidas.
-- Detalhes dos produtos, escolha de quantidade e carrinho salvo no navegador.
+- Detalhes dos produtos, escolha de quantidade e carrinho salvo no navegador. O carrinho abre em uma janela centralizada no desktop e no celular; no celular também há uma barra inferior de acesso.
 - Cadastro, login, saída da conta e sessão após recarregar.
 - Cabeçalho com o nome da pessoa, ícone de hambúrguer e menu de perfil e logout.
 - Alteração do nome e histórico privado dos pedidos.
@@ -78,9 +80,7 @@ As versões estão fixadas no `package.json` e no lockfile. O build de publicaç
 
 O projeto configurado já recebeu a migração pelo SQL Editor. Em outro projeto, siga o [guia do banco](supabase/README.md), aplique o SQL uma vez e atualize a configuração pública.
 
-O cadastro atual aceita Gmail com formato válido, inclusive fictício, e senha somente numérica com pelo menos seis dígitos. A confirmação de e-mail está desativada para os testes. O formulário consulta essa configuração antes de cadastrar para evitar solicitar confirmação para um endereço fictício. A recuperação de senha precisa de uma caixa real e é uma solicitação separada.
-
-Essa é a configuração acadêmica escolhida para o projeto; ela não comprova que a pessoa é dona do e-mail informado. Antes de usar o sistema com clientes reais, é preciso revisar a verificação de e-mail e a política de senha.
+O cadastro acadêmico aceita Gmail fictício e senha numérica de pelo menos seis dígitos, sem confirmação de e-mail. Isso não comprova a posse do endereço. As opções de Auth e a recuperação de senha estão descritas no guia do banco.
 
 ## Conferir e gerar a publicação
 
@@ -102,13 +102,13 @@ O teste real é separado, pois cria uma conta fictícia e registra dados no Supa
 npm run test:auth:live -- --dist
 ```
 
-Veja os [testes](tests/README.md) e o [registro das verificações](docs/VERIFICACAO.md) para saber o que foi executado e suas limitações.
+Os comandos e os resultados estão na [documentação dos testes](tests/README.md).
 
 ## GitHub e Vercel
 
-O [guia do GitHub](docs/GITHUB.md) parte do estado desta pasta: ainda sem Git inicializado. Ele explica como criar o repositório e fazer o primeiro envio.
+O repositório está em `camilamarcalr/BurgerTop`, com branch padrão `main`. O [guia do GitHub](docs/GITHUB.md) explica como obter o código e enviar alterações.
 
-A Vercel usa `vercel.json`: projeto sem framework, build `npm run build` e saída `dist`. Não há variável de ambiente obrigatória na Vercel nesta arquitetura; a configuração pública é um arquivo JavaScript. O domínio final precisa ser cadastrado no Auth. O [guia de publicação](docs/PUBLICACAO.md) detalha esse passo e a conferência depois do deploy.
+A integração com a Vercel já existe. A configuração permanece sem framework, com build `npm run build` e saída `dist`. Os detalhes de domínio e retornos do Auth estão no [guia de publicação](docs/PUBLICACAO.md).
 
 ## Produtos, imagens e vídeo
 

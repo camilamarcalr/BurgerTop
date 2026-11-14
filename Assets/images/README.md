@@ -17,7 +17,7 @@ O site usa as versões WebP da tabela abaixo no banner, nos cards, nos detalhes 
 
 ## Referências de layout
 
-`login-reference.jpeg` é a referência da composição da tela de acesso. `login-burger.jpeg` é a fotografia original exibida no painel esquerdo do login. Ambos mantêm os nomes e o formato recebidos; a referência não é usada como fotografia do painel. A tela de login não carrega um vídeo nesta etapa.
+`login-reference.jpeg` é a referência da composição da tela de acesso. `login-burger.jpeg` é a fotografia exibida no painel esquerdo do login. A referência não é carregada pelo site; a tela de acesso usa somente a fotografia estática.
 
 `inicio-referencia.png` ajudou a orientar a composição da página. `produto-referencia.png` serviu de referência para a janela de detalhes. Elas ficam disponíveis para consulta, mas não são carregadas pelo site.
 

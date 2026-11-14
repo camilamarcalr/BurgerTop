@@ -52,5 +52,5 @@ Os resultados ficam em [reports](reports/README.md). Resumos Markdown podem ser 
 
 A medição do catálogo usa rede de 1,6 Mbps, latência de 150 ms e CPU quatro vezes mais lenta. Ela não é uma nota Lighthouse ou um teste em celular físico.
 
-Safari, envio real de recuperação de senha e o domínio da futura publicação não são cobertos por estes testes. O Gmail fictício não é usado para solicitar recuperação. Consulte o [guia de publicação](../docs/PUBLICACAO.md) para a conferência depois do deploy.
+Safari, envio real de recuperação de senha e regressões no domínio publicado não são cobertos por estes testes. O Gmail fictício não é usado para solicitar recuperação. Consulte o [guia de publicação](../docs/PUBLICACAO.md) para a conferência depois de cada deploy.
 

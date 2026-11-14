@@ -63,6 +63,7 @@ async function waitModalReady(page, selector) {
 
   await check('Cinco produtos, imagens decodificadas e caminhos sem erro', async () => {
     assert.equal(await page.locator('.product-card').count(), 5);
+    assert.equal(await page.locator('.demo-note').count(), 0);
     const photos = page.locator('.product-image img');
     for (const photo of await photos.all()) {
       await photo.scrollIntoViewIfNeeded();
@@ -127,13 +128,27 @@ async function waitModalReady(page, selector) {
     assert.match(await page.locator('#mobile-total').textContent(), /75,00/);
     assert.equal(await page.locator('#cart-items .cart-item').count(), 1);
   });
-  await check('Carrinho compartilhado entre dialog mobile e painel desktop', async () => {
+  await check('Carrinho centralizado no desktop e preservado ao redimensionar', async () => {
     await openCart(page);
     assert.equal(await page.locator('#cart-modal-slot #carrinho').count(), 1);
     await page.setViewportSize({ width: 1280, height: 800 });
-    await page.locator('#cart-dialog').waitFor({ state: 'hidden' });
-    assert.equal(await page.locator('#cart-dock #carrinho').count(), 1);
+    assert(await page.locator('#cart-dialog').isVisible());
+    assert.equal(await page.locator('#cart-modal-slot #carrinho').count(), 1);
     assert.equal(await page.locator('#cart-items').count(), 1);
+    await closeByEscape(page, '#cart-dialog');
+    assert.equal(await page.locator('#carrinho').isVisible(), false);
+    await page.locator('.cart-link').click();
+    await waitModalReady(page, '#cart-dialog');
+    const box = await page.locator('#cart-dialog').boundingBox();
+    assert(Math.abs(box.x + box.width / 2 - 640) <= 2);
+    assert(Math.abs(box.y + box.height / 2 - 400) <= 2);
+    await page.locator('[data-id="x-burger"][data-action="plus"]').click();
+    assert.match(await page.locator('#cart-total').textContent(), /100,00/);
+    await page.locator('[data-id="x-burger"][data-action="minus"]').click();
+    assert.match(await page.locator('#cart-total').textContent(), /75,00/);
+    await page.screenshot({ path: path.join(out, 'carrinho-desktop.png'), animations: 'disabled' });
+    await closeByEscape(page, '#cart-dialog');
+    assert.equal(await page.evaluate(() => document.activeElement.classList.contains('cart-link')), true);
     await page.setViewportSize({ width: 390, height: 844 });
   });
   await check('Finalização, resumo e retorno automático com limpeza persistente', async () => {

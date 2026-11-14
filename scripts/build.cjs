@@ -2,7 +2,6 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { root, publicFiles, exactFile } = require('./site-files.cjs');
 
-// Publicação estática: copia apenas as páginas e suas dependências reais.
 const files = publicFiles();
 for (const file of files) exactFile(file);
 const output = path.resolve(root, 'dist');

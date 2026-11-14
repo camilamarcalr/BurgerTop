@@ -31,7 +31,6 @@
   });
   video.addEventListener('error', fallback);
   source.addEventListener('error', fallback);
-  // Sem loop, reload ou troca de poster ao terminar: mantém o último quadro.
   motion.addEventListener('change', start);
   start();
 })();
@@ -74,7 +73,7 @@
     document.body.classList.toggle('modal-open', dialogs.some(item => item.open));
   }
   function openDialog(dialog, trigger = document.activeElement) {
-    dialogs.filter(item => item.open).forEach(closeDialog);
+    dialogs.filter(item => item.open).forEach(item => closeDialog(item));
     returnFocus.set(dialog, trigger);
     dialog.showModal();
     dialog.classList.add('active');
@@ -99,7 +98,6 @@
     dialog.addEventListener('click', event => {
       if (event.target.closest('[data-close]')) closeDialog(dialog);
     });
-    // O dialog nativo fornece bloqueio do fundo, contenção de foco e fechamento por ESC.
     dialog.addEventListener('close', () => {
       if (dialog.open) return;
       dialog.classList.remove('active');
@@ -108,7 +106,7 @@
       document.body.classList.toggle('modal-open', anotherOpen);
       if (!anotherOpen) {
         let target = returnFocus.get(dialog);
-        if (mobile.matches && target && dock.contains(target)) target = $('#mobile-cart');
+        if (target && dock.contains(target)) target = mobile.matches ? $('#mobile-cart') : $('.cart-link');
         if (target?.isConnected) target.focus({ preventScroll: true });
       }
     });
@@ -164,7 +162,7 @@
     openDialog(productDialog, trigger);
   }
   function openCart(trigger) {
-    dialogs.filter(dialog => dialog.open).forEach(closeDialog);
+    dialogs.filter(dialog => dialog.open).forEach(dialog => closeDialog(dialog));
     $('#cart-modal-slot').append(panel);
     openDialog(cartDialog, trigger);
   }
@@ -197,12 +195,10 @@
   $('#detail-minus').addEventListener('click', () => { detailQuantity = Math.max(1, detailQuantity - 1); updateDetailQuantity(); });
   $('#detail-plus').addEventListener('click', () => { detailQuantity = Math.min(MAX_QUANTITY, detailQuantity + 1); updateDetailQuantity(); });
   $('#detail-add').addEventListener('click', event => { add(selected.id, detailQuantity, event.currentTarget); $('#detail-feedback').textContent = `${selected.name} no pedido: ${cart.quantity(selected.id)} unidades.`; });
-  $('#expand-cart').addEventListener('click', event => openCart(event.currentTarget));
   $('#mobile-cart').addEventListener('click', event => openCart(event.currentTarget));
   $('.cart-link').addEventListener('click', event => {
     event.preventDefault();
-    if (mobile.matches) openCart(event.currentTarget);
-    else { panel.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' }); panel.focus({ preventScroll: true }); }
+    openCart(event.currentTarget);
   });
   const account = globalThis.BurgerTopAccount;
   let pendingOrder, submitting = false;
@@ -244,13 +240,15 @@
         const saved = await account.createOrder(pendingOrder.items, pendingOrder.id);
         if (!saved?.id) throw new Error('Resposta de pedido inválida.');
       }
-    try { sessionStorage.removeItem('burgertop.pendingOrder'); } catch { /* Armazenamento opcional. */ }
-    cart.clear(); renderCart(); returnFocus.set(checkoutDialog, mobile.matches ? $('#mobile-cart') : $('#cardapio')); closeDialog(checkoutDialog, true);
-    announce(account?.configured ? 'Pedido registrado. Você pode consultá-lo em Minha conta.' : 'Demonstração concluída. O carrinho foi limpo. Nenhum pedido real foi enviado.');
+      try { sessionStorage.removeItem('burgertop.pendingOrder'); } catch { /* Armazenamento opcional. */ }
+      cart.clear(); renderCart();
+      returnFocus.set(checkoutDialog, mobile.matches ? $('#mobile-cart') : $('.cart-link'));
+      closeDialog(checkoutDialog, true);
+      announce(account?.configured ? 'Pedido registrado. Você pode consultá-lo no menu da conta.' : 'Demonstração concluída. O carrinho foi limpo. Nenhum pedido real foi enviado.');
     } catch (error) {
       $('#checkout-feedback').textContent = account.message(error); $('#checkout-feedback').hidden = false;
     } finally { submitting = false; $('#complete-demo').disabled = false; }
   });
-  mobile.addEventListener('change', () => { if (cartDialog.open) closeDialog(cartDialog); });
   renderProducts(); renderCart();
+  if (location.hash === '#carrinho') openCart(mobile.matches ? $('#mobile-cart') : $('.cart-link'));
 })();

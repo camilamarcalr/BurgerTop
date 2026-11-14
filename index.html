@@ -47,13 +47,11 @@
           <button type="button" data-category="burger" aria-pressed="false">Hambúrgueres</button>
           <button type="button" data-category="drink" aria-pressed="false">Bebidas</button>
         </div>
-        <p class="demo-note">Preços de referência · não oficiais da BurgerTop.</p>
         <div class="product-grid" id="products"></div>
         <p id="no-results" hidden>Nenhum produto encontrado.</p>
       </section>
-      <div id="cart-dock"><aside id="carrinho" class="cart-panel" tabindex="-1" aria-labelledby="cart-title">
+      <div id="cart-dock" hidden><aside id="carrinho" class="cart-panel" tabindex="-1" aria-labelledby="cart-title">
         <h2 id="cart-title"><span aria-hidden="true">🛒</span> Seu pedido</h2>
-        <button class="text-button expand-cart" id="expand-cart" type="button">Ver pedido completo ↗</button>
         <p id="empty-cart">Nenhum item adicionado ainda.</p>
         <ul id="cart-items"></ul>
         <div class="cart-subtotal"><span>Subtotal</span><span id="cart-subtotal">R$ 0,00</span></div>

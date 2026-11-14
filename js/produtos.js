@@ -1,4 +1,3 @@
-/* Preços de referência consultados em 13/11/2026: ver README.md. Não são preços oficiais da BurgerTop. Dados de composição ilustrativos. Caminhos correspondem aos arquivos originais do projeto. */
 (() => {
   'use strict';
   const products = [
@@ -14,7 +13,7 @@
   const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   const money = cents => (cents / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
-  // Uma única fonte do carrinho para todas as visualizações. Preços nunca vêm do storage.
+  // O storage guarda quantidades; os preços sempre vêm do catálogo atual.
   function createCart(storage) {
     const quantities = new Map();
     let persistenceAvailable = true;

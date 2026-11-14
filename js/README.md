@@ -16,12 +16,12 @@ Este arquivo liga as regras aos elementos da página. Ele controla:
 
 - Busca por nome e filtros de categoria usados em conjunto.
 - Abertura dos detalhes, escolha de quantidade e adição ao pedido.
-- Atualização do contador, do painel lateral e da barra mobile.
+- Atualização do contador, da janela do carrinho e da barra mobile.
 - Aumento, redução e remoção de itens no carrinho.
 - Resumo da finalização e limpeza do carrinho somente após o registro confirmado pelo banco.
 - Reprodução do vídeo e uso da imagem estática quando necessário.
 
-O painel lateral e o carrinho completo não têm listas independentes. O mesmo painel é levado para uma janela quando a pessoa abre a visualização completa. Isso mantém quantidades e valores iguais nas duas apresentações.
+O carrinho usa a mesma janela e os mesmos dados em todas as larguras. O botão do cabeçalho abre o pedido centralizado; no celular, a barra inferior abre essa mesma janela. O painel fica fora da visualização enquanto o carrinho está fechado, sem ocupar espaço no catálogo.
 
 As janelas usam o elemento dialog do HTML. O JavaScript cuida do foco ao abrir e fechar, mantém o percurso da tecla Tab dentro delas e permite fechar por ESC ou pelo X.
 

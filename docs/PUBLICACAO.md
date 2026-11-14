@@ -27,13 +27,11 @@ npm run preview
 
 Abra `http://127.0.0.1:4174`. O preview usa exatamente os arquivos de `dist`.
 
-## Conectar o repositório
+## Integração existente
 
-1. Faça o envio ao GitHub conforme [GITHUB.md](GITHUB.md).
-2. Na Vercel, escolha **Add New → Project** e importe o repositório.
-3. Confira a raiz e os valores do `vercel.json`. Não use `npm run dev` como build.
-4. Publique e anote a URL HTTPS final.
-5. Configure os retornos do Supabase e teste pelo domínio publicado.
+O repositório [camilamarcalr/BurgerTop](https://github.com/camilamarcalr/BurgerTop) já está conectado à Vercel. O site público é [burgertop.vercel.app](https://burgertop.vercel.app). O endereço específico do deployment, `burgertop-d7810afei-c-s4.vercel.app`, redirecionou para o login da Vercel na verificação. Não é necessário criar outro projeto, importar o repositório novamente ou mudar essa proteção para usar o endereço público.
+
+A branch padrão é `main`. Na Vercel, o rastreamento de produção fica em Settings → Environments → Production → Branch Tracking. Mantenha a branch de produção configurada como `main` para publicar os novos commits enviados a ela.
 
 A pasta `dist` não precisa estar no Git: a Vercel a gera durante o build.
 
@@ -63,7 +61,7 @@ Abra as três páginas diretamente, confira fotos e vídeo, cadastre uma conta d
 
 Contas e pedidos continuam no mesmo banco. Já o carrinho e a sessão local pertencem à origem do navegador: ao trocar localhost pelo domínio publicado, é esperado entrar novamente e começar outro carrinho local.
 
-Uma publicação na Vercel não foi feita neste preparo. Domínio, redirecionamentos e eventuais restrições da hospedagem precisam ser conferidos depois do deploy. A entrega de e-mails depende do serviço externo e não é testada com Gmail fictício.
+Depois de cada envio, confira o deployment e o site publicado. A recuperação de senha depende da configuração de e-mail do Supabase e de uma caixa que receba o link.
 
 ## Outra hospedagem estática
 
